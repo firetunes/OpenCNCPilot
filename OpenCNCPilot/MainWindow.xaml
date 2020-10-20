@@ -128,12 +128,15 @@
 				</Border>
 				<Border Style="{StaticResource stylePanelOut}">
 					<Expander Header="Probing" IsExpanded="{util:SettingBinding ProbingExpanderOpen}">
-						<Grid Width="200" Margin="0,0,0,5">
-							<Button Name="ButtonHeightMapCreateNew" Click="ButtonHeightmapCreateNew_Click" Content="Create New" Style="{StaticResource styleButton}" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top"/>
-							<Button Name="ButtonHeightMapLoad" Click="ButtonHeightmapLoad_Click" Content="Load" Style="{StaticResource styleButton}" HorizontalAlignment="Left" Margin="81,5,0,0" VerticalAlignment="Top" Height="24"/>
-							<Button Name="ButtonHeightMapSave" Click="ButtonHeightmapSave_Click" Content="Save" Style="{StaticResource styleButton}" HorizontalAlignment="Left" Margin="121,5,0,0" VerticalAlignment="Top"/>
-							<Button Name="ButtonHeightMapClear" Click="ButtonHeightmapClear_Click" Content="Clear" Style="{StaticResource styleButton}" HorizontalAlignment="Left" Margin="160,5,0,0" VerticalAlignment="Top"/>
-
+						<Grid Width="230" Margin="0,0,0,5">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="5,5,0,0" VerticalAlignment="Top">
+                                <Button Name="ButtonHeightMapCreateNew" Click="ButtonHeightmapCreateNew_Click" Content="New" Style="{StaticResource styleButton}" Margin="5,5,0,0"/>
+                                <Button Name="ButtonHeightMapLoad" Click="ButtonHeightmapLoad_Click" Content="Load" Style="{StaticResource styleButton}" Margin="5,5,0,0" Height="24"/>
+                                <Button Name="ButtonHeightMapSave" Click="ButtonHeightmapSave_Click" Content="Save" Style="{StaticResource styleButton}" Margin="5,5,0,0" Height="24"/>
+                                <Button Name="ButtonHeightMapClear" Click="ButtonHeightmapClear_Click" Content="Clear" Style="{StaticResource styleButton}" Margin="5,5,0,0" Height="24"/>
+                                <Button Name="ButtonHeightMapExpand" Click="ButtonHeightmapExpand_Click" Content="Expand" Style="{StaticResource styleButton}" Margin="5,5,0,0"/>
+                            </StackPanel>
+                            
 							<Grid Name="GridProbingControls" Margin="0,33,0,0">
 								<Label Content="Points:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
 								<Label Name="LabelHeightMapProgress" Content="0/0" HorizontalAlignment="Left" Margin="55,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.667,0.538"/>
@@ -146,7 +149,8 @@
 									<Label Content="0" Width="50" Name="LabelHeightMapMaxZ"/>
 								</StackPanel>
 							</Grid>
-						</Grid>
+
+                         </Grid>
 					</Expander>
 				</Border>
 				<Border Style="{StaticResource stylePanelOut}">

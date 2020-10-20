@@ -317,5 +317,43 @@ namespace OpenCNCPilot.GCode
 			border.Points.Clear();
 			border.Points = b;
 		}
+
+		public void ExpandMap()
+        {
+
+			double?[,] TmpPoints = new double?[SizeX + 2, SizeY + 2];
+
+			for (int x = 0; x < SizeX; x++)
+			{
+				for (int y = 0; y < SizeY; y++)
+				{
+					if (!Points[x, y].HasValue)
+						continue;
+
+					TmpPoints[x+1, y+1] = Points[x, y];
+
+					if (x == 0) { TmpPoints[0, y + 1] = Points[x, y]; }
+					if (x == (SizeX - 1)) { TmpPoints[SizeX + 1, y + 1] = Points[x, y]; }
+
+					if (y == 0) { TmpPoints[x+1, 0] = Points[x, y]; }
+					if (y == (SizeY - 1)) { TmpPoints[x + 1, SizeY + 1] = Points[x, y]; }
+
+				}
+
+			}
+			TmpPoints[0, 0] = TmpPoints[1, 1];
+			TmpPoints[0, SizeY + 1] = TmpPoints[0, SizeY];
+			TmpPoints[SizeX + 1, 0] = TmpPoints[SizeX, 0];
+			TmpPoints[SizeX + 1, SizeY + 1] = TmpPoints[SizeX, SizeY];
+
+			Min = new Vector2(Min.X - GridX, Min.Y - GridY);
+			Max = new Vector2(Max.X + GridX, Max.Y + GridY);
+
+			Points = new double?[SizeX, SizeY];
+			Points = TmpPoints;
+
+			SizeX += 2;
+			SizeY += 2;
+		}
 	}
 }

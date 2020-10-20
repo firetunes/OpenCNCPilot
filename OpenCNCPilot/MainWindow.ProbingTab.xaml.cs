@@ -14,6 +14,7 @@ namespace OpenCNCPilot
 			ButtonHeightMapLoad.IsEnabled = Map == null;
 			ButtonHeightMapSave.IsEnabled = machine.Mode != Machine.OperatingMode.Probe && Map != null;
 			ButtonHeightMapClear.IsEnabled = machine.Mode != Machine.OperatingMode.Probe && Map != null;
+			ButtonHeightMapExpand.IsEnabled = machine.Mode != Machine.OperatingMode.Probe && Map != null;
 
 			GridProbingControls.Visibility = Map != null ? Visibility.Visible : Visibility.Collapsed;
 
@@ -169,6 +170,21 @@ namespace OpenCNCPilot
 
 			saveFileDialogHeightMap.FileName = $"map{(int)Map.Delta.X}x{(int)Map.Delta.Y}.hmap";
 			saveFileDialogHeightMap.ShowDialog();
+		}
+
+		private void ButtonHeightmapExpand_Click(object sender, RoutedEventArgs e)
+        {
+			if (machine.Mode == Machine.OperatingMode.Probe || Map == null)
+				return;
+
+			Map.ExpandMap();
+
+			Map.MapUpdated += Map_MapUpdated;
+
+			Map.GetPreviewModel(ModelHeightMapBoundary, ModelHeightMapPoints);
+
+			UpdateProbeTabButtons();
+			Map_MapUpdated();
 		}
 
 		private void ButtonHeightmapClear_Click(object sender, RoutedEventArgs e)
