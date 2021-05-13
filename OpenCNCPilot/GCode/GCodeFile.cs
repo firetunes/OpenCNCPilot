@@ -202,7 +202,8 @@ namespace OpenCNCPilot.GCode
 
 		public List<string> GetGCode()
 		{
-			List<string> GCode = new List<string>(Toolpath.Count + 1) { "G90 G91.1 G21 G17" };
+			//List<string> GCode = new List<string>(Toolpath.Count + 1) { "G90 G91.1 G21 G17" };
+			List<string> GCode = new List<string>(Toolpath.Count + 1) { "G90 G21" };
 
 			NumberFormatInfo nfi = new NumberFormatInfo();
 			nfi.NumberDecimalSeparator = ".";   //prevent problems with international versions of windows (eg Germany would write 25.4 as 25,4 which is not compatible with standard GCode)
@@ -398,8 +399,17 @@ namespace OpenCNCPilot.GCode
 					{
 						Line l = (Line)m;
 
+
+						// Ethan K. - I want to modify rapids too!
+
 						// do not split up or modify any lines that are rapid or not fully defined
-						if (!l.StartValid || l.PositionValid.Any(isValid => !isValid) || l.Rapid)
+						//if (!l.StartValid || l.PositionValid.Any(isValid => !isValid) || l.Rapid)
+						//{
+						//newToolPath.Add(l);
+						//continue;
+						//}
+
+						if (!l.StartValid || l.PositionValid.Any(isValid => !isValid))
 						{
 							newToolPath.Add(l);
 							continue;
