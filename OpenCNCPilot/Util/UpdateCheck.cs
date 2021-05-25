@@ -60,8 +60,8 @@ namespace OpenCNCPilot.Util
 						url = urlMatch.Groups[1].Value;
 					}
 
-					if (MessageBox.Show("There is an update available!\nOpen in browser?", "Update", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
-						System.Diagnostics.Process.Start(url);
+					//if (MessageBox.Show("There is an update available!\nOpen in browser?", "Update", MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+					//	System.Diagnostics.Process.Start(url);
 				}
 			}
 			catch { }   //update check is non-critical and should never interrupt normal application operation
